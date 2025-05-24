@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'; // Fallback for safety
+
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -20,7 +22,7 @@ const LoginPage = () => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:3001/api/auth/login', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { // Updated URL
         email,
         password,
       });

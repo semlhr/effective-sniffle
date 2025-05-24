@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'; // Fallback for safety
+
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -26,7 +28,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:3001/api/auth/register', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, { // Updated URL
         username,
         email,
         password,
